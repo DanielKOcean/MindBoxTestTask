@@ -1,6 +1,6 @@
 namespace ShapesLib.Shapes;
 
-public class Triangle
+public class Triangle : Shape
 {
     public double SideA { get; set; }
 
@@ -19,5 +19,5 @@ public class Triangle
 
     private double SP => (SideA + SideB + SideC) / 2; // Semi-perimeter
 
-    public double Area() => Math.Sqrt(SP * (SP - SideA) * (SP - SideB) * (SP - SideC)); // Heron's Formula
+    public override double Area() => Math.Sqrt(SP * (SP - SideA) * (SP - SideB) * (SP - SideC)); // Heron's Formula
 }

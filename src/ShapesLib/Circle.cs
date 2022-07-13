@@ -1,10 +1,10 @@
 namespace ShapesLib.Shapes;
 
-public class Circle
+public class Circle : Shape
 {
     public double Radius { get; set; }
 
-    public double Area() => Math.PI * Math.Pow(Radius, 2);
+    public override double Area() => Math.PI * Math.Pow(Radius, 2);
 
     public Circle() { }
 
