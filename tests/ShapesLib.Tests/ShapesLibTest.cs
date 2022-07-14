@@ -73,6 +73,18 @@ public class ShapesLibTests
     }
 
     [Test]
+    [TestCase(0.0)]
+    [TestCase(-1.0)]
+    public void Circle_Area_ThrowsError_IfWrongSRadius(double r)
+    {
+        var circle = new Circle(r);
+
+        var ex = Assert.Throws<Exception>(() => circle.Area());
+
+        Assert.That(ex?.Message, Is.EqualTo("Radius mut be greater then 0."));
+    }
+
+    [Test]
     [TestCase(-1, 10, 10)]
     [TestCase(10, -1, 10)]
     [TestCase(10, 10, -1)]
