@@ -6,7 +6,12 @@ public class Circle : Shape
 
     public override bool IsCorrect() => Radius > 0.0;
 
-    public override double Area() => Math.PI * Math.Pow(Radius, 2);
+    public override double Area()
+    {
+        if (!IsCorrect()) throw new Exception("Radius mut be greater then 0.");
+
+        return  Math.PI * Math.Pow(Radius, 2);
+    }
 
     public Circle() { }
 

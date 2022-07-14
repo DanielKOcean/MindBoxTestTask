@@ -19,7 +19,12 @@ public class Triangle : Shape
 
     private double SP => (SideA + SideB + SideC) / 2; // Semi-perimeter
 
-    public override double Area() => Math.Sqrt(SP * (SP - SideA) * (SP - SideB) * (SP - SideC)); // Heron's Formula
+    public override double Area()
+    {
+        if (!IsCorrect()) throw new Exception("Triangle sides dont match correct values.");
+
+        return Math.Sqrt(SP * (SP - SideA) * (SP - SideB) * (SP - SideC)); // Heron's Formula
+    }
 
     public override bool IsCorrect() =>
         SideA > 0.0 &&
