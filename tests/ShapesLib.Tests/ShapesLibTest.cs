@@ -128,4 +128,56 @@ public class ShapesLibTests
 
         Assert.AreEqual(expected, actual, 0.0001);
     }
+
+    [Test]
+    [TestCase(10.0, 0.0, 0.0)]
+    [TestCase(5.0, 360, 78.5398)]
+    [TestCase(1600.0, 180.0, 4021238.5965)]
+    public void Sector_Area_ReturnsCorrectValue(double r, double angle, double expected)
+    {
+        var sector = new Sector(r, angle);
+
+        var actual = sector.Area();
+
+        Assert.AreEqual(expected, actual, 0.0001);
+    }
+
+    [Test]
+    [TestCase(0.0, true)]
+    [TestCase(360.0, true)]
+    [TestCase(-0.1, false)]
+    [TestCase(360.1, false)]
+    public void Sector_IsCorrect_RetursCorrectValue(double angle, bool expected)
+    {
+        var sector = new Sector(10.0, angle);
+
+        var actual = sector.IsCorrect();
+
+        Assert.That(expected, Is.EqualTo(actual));
+    }
+
+    [Test]
+    [TestCase(-0.1)]
+    [TestCase(360.1)]
+    public void Sector_Area_ThrowsError_IfWrongSRadius(double angle)
+    {
+        var sector = new Sector(10.0, angle);
+
+        var ex = Assert.Throws<Exception>(() => sector.Area());
+
+        Assert.That(ex?.Message, Is.EqualTo("Angle must be between 0 and 360."));
+    }
+
+    [Test]
+    [TestCase(10.0, 0.0, 0.0)]
+    [TestCase(5.0, 360, 78.5398)]
+    [TestCase(1600.0, 180.0, 4021238.5965)]
+    public void Utils_GetArea_ReturnsCorrectValueForSector(double r, double angle, double expected)
+    {
+        var sector = new Sector(r, angle);
+
+        var actual = ShapeUtils.GetArea(sector);
+
+        Assert.AreEqual(expected, actual, 0.0001);
+    }
 }
