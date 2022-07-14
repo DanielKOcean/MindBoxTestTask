@@ -33,4 +33,19 @@ public class Triangle : Shape
         (SideA + SideB) > SideC &&
         (SideB + SideC) > SideA &&
         (SideA + SideC) > SideB;
+
+    public bool IsRightTriangle()
+    {
+        if (!IsCorrect()) throw new Exception("Triangle sides dont match correct values.");
+
+        var a2 = SideA * SideA;
+        var b2 = SideB * SideB;
+        var c2 = SideC * SideC;
+
+        var delta = 0.0001;
+
+        return Math.Abs(a2 - b2 - c2) < delta ||
+            Math.Abs(b2 - a2 - c2) < delta ||
+            Math.Abs(c2 - a2 - b2) < delta;
+    }
 }

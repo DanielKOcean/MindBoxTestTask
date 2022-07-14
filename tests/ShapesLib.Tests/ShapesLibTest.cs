@@ -128,4 +128,18 @@ public class ShapesLibTests
 
         Assert.AreEqual(expected, actual, 0.0001);
     }
+
+    [Test]
+    [TestCase(3, 4, 5, true)]
+    [TestCase(4, 5, 3, true)]
+    [TestCase(5, 3, 4, true)]
+    [TestCase(10, 10, 10, false)]
+    public void Triangle_IsRightTriangle_ReturnsCorrectValue(double a, double b, double c, bool expected)
+    {
+        var triangle = new Triangle(a, b, c);
+
+        var actual = triangle.IsRightTriangle();
+
+        Assert.That(actual, Is.EqualTo(expected));
+    }
 }
